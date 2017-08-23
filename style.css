@@ -2,3 +2,13 @@
 display: -webkit-flex;
 display: flex;
 }
+
+.nav {
+display: flex;
+justify-content: space-between;
+}
+
+.navbutton {
+background: linear-gradient();
+
+}
