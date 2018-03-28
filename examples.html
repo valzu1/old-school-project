@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Examples for Twitter Bootstrap</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/docs.min.css">
+    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/collapse.js"></script>
+    <script type="text/javascript" src="js/button.js"></script>
+    <script type="text/javascript" src="js/dropdown.js"></script>
+
+  </head>
+  <body>
+
+    <div id="accordion">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Navigation things
+            </button>
+          </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body flex-column">
+            <a class="nav-link" href="bootstrap-examples\docs\4.0\examples\navbar-bottom\index.html">Bottom navigation bar</a>
+            <a class="nav-link" href="bootstrap-examples\docs\4.0\examples\navbar-fixed\index.html">Fixed navigation bar</a>
+            <a class="nav-link" href="bootstrap-examples\docs\4.0\examples\navbar-static\index.html">Static navigation bar</a>
+            <a class="nav-link" href="bootstrap-examples\docs\4.0\examples\offcanvas\index.html">Offcanvas navigation</a>
+            <a class="nav-link" href="bootstrap-examples\docs\4.0\examples\navbars\index.html">Navigation bars</a>
+            <a class="nav-link" href="bootstrap-examples\docs\4.0\examples\sticky-footer-navbar\index.html">Sticky footer and navbar</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Gallery and presentation things
+            </button>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+          <div class="card-body flex-column">
+            <a class="nav-link" href="bootstrap-examples\docs\4.0\examples\album\index.html">Album</a>
+            <a class="nav-link" href="bootstrap-examples\docs\4.0\examples\blog\index.html">Blog template</a>
+            <a class="nav-link" href="bootstrap-examples\docs\4.0\examples\carousel\index.html">Carousel</a>
+            <a class="nav-link" href="bootstrap-examples\docs\4.0\examples\cover\index.html">Cover (Fullscreen image)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

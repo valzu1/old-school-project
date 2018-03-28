@@ -1,0 +1,21 @@
+.w4-cursor-default{cursor: default;} .w4-cursor-pointer{cursor: pointer;} .w4-cursor-not-allowed{cursor: not-allowed;}
+.w4-nav{}
+.w4-nav-item{float:left; border:none; outline:none; cursor:pointer;}
+.w4-margin-top{margin-top: var(--nav-button-height);}
+
+.my-head {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding-left: 30px;
+  background-color: lightgray;
+  height: 80px;
+}
+
+.mymaindiv{
+
+}
+
+.mydiv1{
+  
+}

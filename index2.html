@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+    <title>OP 2d-peli</title>
+		<script type="text/javascript" src="Phaser/js/phaser.js"></script>
+			<style type="text/css">
+    	</style>
+
+
+	</head>
+	<body>
+
+		<script type="text/javascript">
+
+var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+
+function preload() {
+		game.load.image('Background', 'Phaser/assets/Grid2.png');
+	  game.load.image('YellowBullet', 'Phaser/assets/YellowBullet.png');
+    game.load.image('BlueBullet', 'Phaser/assets/BlueBullet.png');
+    game.load.image('RedBull', 'Phaser/assets/RedBull.png');
+    game.load.image('GreenBullet', 'Phaser/assets/GreenBullet.png');
+    game.load.image('GreenTankHead', 'Phaser/assets/GreenTankHead.png');
+		game.load.image('GreenTankBody', 'Phaser/assets/GreenTankBody.png');
+		game.load.image('RedTankHead', 'Phaser/assets/RedTankHead.png');
+		game.load.image('RedTankBody', 'Phaser/assets/RedTankBody.png');
+		game.load.image('BlueTankHead', 'Phaser/assets/BlueTankHead.png');
+		game.load.image('YellowTankBody', 'Phaser/assets/YellowTankBody.png');
+		game.load.image('YellowTankHead', 'Phaser/assets/YellowTankHead.png');
+		game.load.image('DWall', 'Phaser/assets/DestroyableWall.png');
+		game.load.image('Wall', 'Phaser/assets/Wall.png');
+		game.load.image('Floor', 'Phaser/assets/Floor.png');
+}
+
+var FireButton;
+var player;
+var wall;
+var enemy;
+var cursors;
+
+var ammo;
+var score = 0;
+var scoreText;
+
+function create() {
+
+    //  We're going to be using physics, so enable the Arcade Physics system
+    game.physics.startSystem(Phaser.Physics.ARCADE);
+
+    //  The platforms group contains the ground and the 2 ledges we can jump on
+    wall = game.add.group();
+		game.physics.arcade.enable(wall);
+
+    //  We will enable physics for any object that is created in this group
+    //wall.enableBody = true;
+		//wall.body.immovable = true;
+
+
+    //  Now let's create two ledges
+
+    //ledge = platforms.create(-150, 250, 'tilewall');
+    //ledge.body.immovable = true;
+
+    // The player and its settings
+    player = game.add.sprite(32, game.world.height - 150, 'GreenTankBody');
+		enemy = game.add.sprite(80, game.world.height - 80, 'RedTankBody');
+
+    //  We need to enable physics on the player
+    game.physics.arcade.enable(player);
+		game.physics.arcade.enable(enemy);
+		game.physics.arcade.enable(ammo);
+
+
+    //  Player physics properties. Give the little guy a slight bounce.
+		player.body.bounce.y = 0;
+		player.body.gravity.y = 0;
+		player.body.collideWorldBounds = true;
+		enemy.body.bounce.y = 0;
+    enemy.body.gravity.y = 0;
+    enemy.body.collideWorldBounds = true;
+
+    //  Finally some stars to collect
+    //ammo = game.add.group();
+
+    //  We var ledge = walls.create(400, 400, 'Wall');
+    //ledge.body.immovable = true;
+		//will enable physics for any star that is created in this group
+    ammo.enableBody = true;
+
+
+    //  Here we'll create 12 of them evenly spaced apart
+    for (var i = 0; i < 12; i++)
+    {
+        //  Create a star inside of the 'stars' group
+        var ammos = ammo.create(i * 70, 0, 'Ammo');
+
+        //  This just gives each star a slightly random bounce value
+        ammo.body.bounce.y = 0;
+				ammo.body.collideWorldBounds = true;
+    }
+
+    //  The score
+    scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+
+    //  Our controls.
+
+    cursors = game.input.keyboard.createCursorKeys();
+		FireButton = game.Mouse.mouseDownCallback.createFire();
+
+		game.camera.follow(player);
+}
+
+function update() {
+
+    //  Collide the player and the stars with the platforms
+    game.physics.arcade.collide(player, wall);
+    game.physics.arcade.collide(ammos, wall);
+		game.physics.arcade.collide(enemy, wall);
+		Phaser.TileSprite.setFrame('Background');
+		Phaser.TileSprite.tilePosition.toString('player');
+
+    //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
+    game.physics.arcade.overlap(enemy, ammos, killEnemy, null, this);
+
+    //  Reset the players velocity (movement)
+    player.body.velocity.x = 0;
+
+    if (cursors.left.isDown)
+    {
+        player.body.velocity.x = -150;
+    }
+    if (cursors.right.isDown)
+    {
+        player.body.velocity.x = 150;
+    }
+    if (cursors.up.isDown)
+    {
+        player.body.velocity.y = 150;
+    }
+		if (cursors.down.isDown)
+		{
+		    player.body.velocity.x = 150;
+		}
+		if (FireButton.MOUSE_LEFT.isDown)
+    {
+		    //fire
+		}
+
+
+}
+
+function render() {
+
+    game.debug.cameraInfo(game.camera, 32, 32);
+    game.debug.spriteCoords(player, 32, 500);
+
+}
+
+function fire (player, ammo) {
+
+}
+
+function killEnemy (player, ammo) {
+
+    // Removes the star from the screen
+    enemy.kill();
+
+    //  Add and update the score
+    score += 10;
+    scoreText.text = 'Score: ' + score;
+
+}
+
+	</script>
+
+	</body>
+</html>
